@@ -11,6 +11,11 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { TopBar } from "@/components/top-bar";
+import { ResponsibleAi } from "@/components/responsible-ai";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
+      { title: "Workly AI — Workplace Productivity Assistant" },
       {
-        rel: "stylesheet",
-        href: appCss,
+        name: "description",
+        content:
+          "AI-powered emails, meeting summaries, task plans, research, and chat for modern teams.",
       },
     ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -118,8 +116,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <TopBar />
+          <main className="flex-1 p-4 sm:p-6 lg:p-8">
+            <Outlet />
+          </main>
+          <footer className="border-t bg-muted/30 px-4 py-3 sm:px-6 lg:px-8">
+            <ResponsibleAi compact />
+          </footer>
+        </SidebarInset>
+      </SidebarProvider>
+      <Toaster />
     </QueryClientProvider>
   );
 }
