@@ -82,12 +82,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Workly AI — Workplace Productivity Assistant" },
+      { title: "AI Workplace Productivity Assistant" },
       {
         name: "description",
         content:
           "AI-powered emails, meeting summaries, task plans, research, and chat for modern teams.",
       },
+      { property: "og:title", content: "AI Workplace Productivity Assistant" },
+      { name: "twitter:title", content: "AI Workplace Productivity Assistant" },
+      { name: "description", content: "AI Workplace Productivity Assistant automates tasks to boost professional efficiency." },
+      { property: "og:description", content: "AI Workplace Productivity Assistant automates tasks to boost professional efficiency." },
+      { name: "twitter:description", content: "AI Workplace Productivity Assistant automates tasks to boost professional efficiency." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b47a09bf-b876-4fb1-9b88-c2d8bc187142/id-preview-08448b1f--a0654708-3e4f-4695-983d-e60913f36a87.lovable.app-1782837956808.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b47a09bf-b876-4fb1-9b88-c2d8bc187142/id-preview-08448b1f--a0654708-3e4f-4695-983d-e60913f36a87.lovable.app-1782837956808.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
